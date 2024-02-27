@@ -14,6 +14,7 @@ class ImplementBlock extends StatelessWidget {
     return BlocProvider(
         create: (context) => CounterBloc(),
         child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: Home(),
         ));
   }
@@ -25,15 +26,36 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: BlocBuilder<CounterBloc, CounterState>(
-        builder: (context, state) {
-          return Text(state.count.toString(),
-              style: const TextStyle(fontSize: 15));
-        },
-      )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read<CounterBloc>().add(Increment()),
-        child: const Icon(Icons.add),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.lightBlue,
+        title:
+            const Text("Increment Operation", style: TextStyle(fontSize: 18)),
+      ),
+      body: Column(
+        //mainAxisSize: MainAxisSize.min,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BlocBuilder<CounterBloc, CounterState>(
+            builder: (context, state) {
+              if (state is NumberIncremented) {
+                return Text(state.count.toString());
+              } else {
+                return Text(state.count.toString());
+              }
+            },
+          ),
+          ElevatedButton(
+              onPressed: () => context.read<CounterBloc>().add(Decrement()),
+              child: const Text("Do Decrement")),
+          SizedBox(
+            height: 50,
+          ),
+          ElevatedButton(
+              onPressed: () => context.read<CounterBloc>().add(Increment()),
+              child: const Text("DO Increment")),
+        ],
       ),
     );
   }

@@ -16,6 +16,11 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
         // for passing have to use emit.
         emit(NumberIncremented(count));
       }
+      if (event is Decrement) {
+        print("Button is pressed");
+        count--;
+      }
+      emit(NumberDecremented(count));
     });
   }
 }

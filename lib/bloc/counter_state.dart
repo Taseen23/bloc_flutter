@@ -13,3 +13,7 @@ final class CounterInitial extends CounterState {
 class NumberIncremented extends CounterState {
   NumberIncremented(super.count);
 }
+
+class NumberDecremented extends CounterState {
+  NumberDecremented(super.count);
+}

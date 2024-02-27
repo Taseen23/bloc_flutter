@@ -35,14 +35,21 @@ class Home extends StatelessWidget {
       body: Column(
         //mainAxisSize: MainAxisSize.min,
         // crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        //  mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BlocBuilder<CounterBloc, CounterState>(
             builder: (context, state) {
               if (state is NumberIncremented) {
-                return Text(state.count.toString());
+                return Text(
+                  state.count.toString(),
+                  style: TextStyle(fontSize: 20),
+                );
               } else {
-                return Text(state.count.toString());
+                return Text(
+                  state.count.toString(),
+                  style: TextStyle(fontSize: 20),
+                );
               }
             },
           ),
